@@ -1,4 +1,4 @@
-# 🛒 My Brand Online – Digital Products & Affiliate Shop
+# 🛒 Brands Online – Digital Products & Affiliate Shop
 
 Welcome to **My Brand Online**, your trusted place for exploring powerful tools, digital products, and affiliate resources that help you **start, grow, and scale your online business**.  
 
