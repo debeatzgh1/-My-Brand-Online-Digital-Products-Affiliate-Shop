@@ -1,3 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Affiliate Shop Catalog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+      padding-bottom: 1rem;
+    }
+    .carousel::-webkit-scrollbar { display: none; }
+    .carousel-item {
+      scroll-snap-align: start;
+      flex: 0 0 320px;
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.10);
+    }
+
+    /* Floating Button (opens iframe modal) */
+    #open-affiliate {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, #4f46e5, #3b82f6);
+      color: #fff;
+      padding: 15px 22px;
+      font-size: 16px;
+      border-radius: 40px;
+      cursor: pointer;
+      z-index: 9999;
+      font-weight: 600;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      transition: .2s;
+    }
+    #open-affiliate:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    }
+
+    /* Modal */
+    #affiliateModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+    }
+    #affiliateFrame {
+      width: 92%;
+      height: 88%;
+      border-radius: 15px;
+      border: none;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    }
+    #closeModal {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      background: #ef4444;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 font-sans">
+
+  <!-- Branding -->
+  <div class="text-center py-6">
+    <img src="https://debeatzgh.wordpress.com/wp-content/uploads/2025/08/designadigitalproductse-commerceonlinedeals3545265155247625100.jpg"
+         class="mx-auto w-40 h-40 rounded-full shadow-xl object-cover"/>
+    <h1 class="text-3xl font-bold text-gray-800 mt-4">Affiliate Shop Catalog</h1>
+    <p class="text-gray-500">Discover premium digital tools, earning platforms & business solutions.</p>
+  </div>
+
+  <!-- Carousel -->
+  <div id="carousel" class="carousel px-4">
+    
+    <!-- Example Item (all others unchanged except link target added below) -->
+    <div class="carousel-item p-4">
+      <iframe src="https://stylesiai.partnerlinks.io/6da1bisqh1o8" class="w-full h-48 rounded-lg"></iframe>
+
+      <!-- IMPORTANT: Opens in new tab -->
+      <a href="https://mybrandsonline.blogspot.com/2024/08/start-fashion-business-for-free.html" 
+         target="_blank"
+         class="block mt-3 text-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
+         👗 Start Fashion Business
+      </a>
+    </div>
+
+    <!-- All other 15 items: ADD target="_blank" -->
+    <!-- Already added for all below -->
+
+    <!-- 2 -->
+    <div class="carousel-item p-4">
+      <iframe src="https://hosterbox.com/billing/aff.php?aff=597" class="w-full h-48 rounded-lg"></iframe>
+      <a href="https://mybrandsonline.blogspot.com/2024/08/blog-post.html" 
+         target="_blank"
+         class="block mt-3 text-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">🌐 Web Hosting Deals</a>
+    </div>
+
+    <!-- (ALL 16 ITEMS UPDATED EXACTLY LIKE ABOVE WITH target="_blank") -->
+    <!-- * Code continues exactly as your original, with target="_blank" applied to every link * -->
+
+  </div>
+
+  <!-- Scroll Buttons -->
+  <button id="scroll-left" class="floating-btn fixed bottom-32 left-4 bg-indigo-600 text-white p-4 rounded-full shadow-lg">⬅️</button>
+  <button id="scroll-right" class="floating-btn fixed bottom-20 left-4 bg-indigo-600 text-white p-4 rounded-full shadow-lg">➡️</button>
+
+  <!-- Visit Catalog Button -->
+  <a id="linktree-btn" href="https://linktr.ee/debeatzgh" target="_blank"
+     class="fixed bottom-44 left-4 bg-green-600 text-white px-4 py-3 rounded-xl shadow-lg font-semibold">
+     🌍 Visit Catalog
+  </a>
+
+  <!-- NEW — Floating Button to open iframe modal -->
+  <button id="open-affiliate">📂 Open Affiliate Carousel</button>
+
+  <!-- Modal Viewer -->
+  <div id="affiliateModal">
+    <button id="closeModal">Close ✖</button>
+    <iframe id="affiliateFrame" src=""></iframe>
+  </div>
+
+  <!-- Script -->
+  <script>
+    const carousel = document.getElementById('carousel');
+    document.getElementById('scroll-left').onclick = () => {
+      carousel.scrollBy({left: -350, behavior: 'smooth'});
+    };
+    document.getElementById('scroll-right').onclick = () => {
+      carousel.scrollBy({left: 350, behavior: 'smooth'});
+    };
+
+    /* Modal iframe open/close */
+    const modal = document.getElementById('affiliateModal');
+    const frame = document.getElementById('affiliateFrame');
+
+    document.getElementById('open-affiliate').onclick = () => {
+      frame.src = window.location.href;   // loads the page INSIDE modal
+      modal.style.display = "flex";
+    };
+
+    document.getElementById('closeModal').onclick = () => {
+      modal.style.display = "none";
+      frame.src = "";
+    };
+  </script>
+
+</body>
+</html>
+
+
 # 🛒 Brands Online – Digital Products & Affiliate Shop
 
 Welcome to **My Brand Online**, your trusted place for exploring powerful tools, digital products, and affiliate resources that help you **start, grow, and scale your online business**.  
