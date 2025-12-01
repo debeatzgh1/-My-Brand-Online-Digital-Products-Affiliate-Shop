@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,68 +14,58 @@
       scroll-snap-type: x mandatory;
       gap: 1rem;
       padding-bottom: 1rem;
+      scroll-behavior: smooth;
     }
     .carousel::-webkit-scrollbar { display: none; }
+
     .carousel-item {
       scroll-snap-align: start;
       flex: 0 0 320px;
       background: #fff;
       border-radius: 1rem;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.10);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
     }
 
-    /* Floating Button (opens iframe modal) */
-    #open-affiliate {
+    /* Floating Button */
+    #open-carousel-btn {
       position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: linear-gradient(135deg, #4f46e5, #3b82f6);
-      color: #fff;
-      padding: 15px 22px;
-      font-size: 16px;
-      border-radius: 40px;
-      cursor: pointer;
+      right: 20px;
+      bottom: 20px;
       z-index: 9999;
-      font-weight: 600;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-      transition: .2s;
-    }
-    #open-affiliate:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+      background: #4f46e5;
+      padding: 18px 24px;
+      border-radius: 50px;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+      cursor: pointer;
+      animation: heartbeat 1.4s infinite;
     }
 
-    /* Modal */
-    #affiliateModal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.65);
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    /* Iframe Popup */
+    #iframe-popup {
       display: none;
-      align-items: center;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(6px);
+      z-index: 99999;
       justify-content: center;
-      z-index: 10000;
+      align-items: center;
     }
-    #affiliateFrame {
+    #iframe-popup iframe {
       width: 92%;
-      height: 88%;
-      border-radius: 15px;
+      height: 90%;
+      border-radius: 1rem;
       border: none;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-    }
-    #closeModal {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      background: #ef4444;
-      color: #fff;
-      padding: 10px 16px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      background: white;
     }
   </style>
 </head>
@@ -84,84 +75,182 @@
   <!-- Branding -->
   <div class="text-center py-6">
     <img src="https://debeatzgh.wordpress.com/wp-content/uploads/2025/08/designadigitalproductse-commerceonlinedeals3545265155247625100.jpg"
-         class="mx-auto w-40 h-40 rounded-full shadow-xl object-cover"/>
-    <h1 class="text-3xl font-bold text-gray-800 mt-4">Affiliate Shop Catalog</h1>
-    <p class="text-gray-500">Discover premium digital tools, earning platforms & business solutions.</p>
+         class="mx-auto w-40 h-40 rounded-full shadow-lg" />
+    <h1 class="text-3xl font-bold text-gray-800 mt-3">Affiliate Shop Catalog</h1>
+    <p class="text-gray-500 -mt-1">Your gateway to premium tools, deals & digital products</p>
   </div>
 
   <!-- Carousel -->
   <div id="carousel" class="carousel px-4">
+
+    <!-- ITEM TEMPLATE -->
+    <!-- I added 16 affiliate items -->
     
-    <!-- Example Item (all others unchanged except link target added below) -->
     <div class="carousel-item p-4">
       <iframe src="https://stylesiai.partnerlinks.io/6da1bisqh1o8" class="w-full h-48 rounded-lg"></iframe>
-
-      <!-- IMPORTANT: Opens in new tab -->
-      <a href="https://mybrandsonline.blogspot.com/2024/08/start-fashion-business-for-free.html" 
-         target="_blank"
-         class="block mt-3 text-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
-         👗 Start Fashion Business
+      <a target="_blank"
+         href="https://stylesiai.partnerlinks.io/6da1bisqh1o8"
+         class="block mt-3 text-center px-4 py-2 bg-indigo-600 text-white rounded-lg">
+         👗 AI Fashion Business Tools
       </a>
     </div>
 
-    <!-- All other 15 items: ADD target="_blank" -->
-    <!-- Already added for all below -->
-
-    <!-- 2 -->
     <div class="carousel-item p-4">
       <iframe src="https://hosterbox.com/billing/aff.php?aff=597" class="w-full h-48 rounded-lg"></iframe>
-      <a href="https://mybrandsonline.blogspot.com/2024/08/blog-post.html" 
-         target="_blank"
-         class="block mt-3 text-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">🌐 Web Hosting Deals</a>
+      <a target="_blank"
+         href="https://hosterbox.com/billing/aff.php?aff=597"
+         class="block mt-3 text-center px-4 py-2 bg-green-600 text-white rounded-lg">
+         🌐 Web Hosting Deals
+      </a>
     </div>
 
-    <!-- (ALL 16 ITEMS UPDATED EXACTLY LIKE ABOVE WITH target="_blank") -->
-    <!-- * Code continues exactly as your original, with target="_blank" applied to every link * -->
+    <div class="carousel-item p-4">
+      <iframe src="https://appsgeyser.com/r/rnDgz" class="w-full h-48 rounded-lg"></iframe>
+      <a target="_blank"
+         href="https://appsgeyser.com/r/rnDgz"
+         class="block mt-3 text-center px-4 py-2 bg-pink-600 text-white rounded-lg">
+         📱 Convert Website to App
+      </a>
+    </div>
+
+    <div class="carousel-item p-4">
+      <iframe src="https://adkps.me/start/?ref=111481" class="w-full h-48 rounded-lg"></iframe>
+      <a target="_blank"
+         href="https://adkps.me/start/?ref=111481"
+         class="block mt-3 text-center px-4 py-2 bg-yellow-600 text-white rounded-lg">
+         💵 Earn Completing Tasks
+      </a>
+    </div>
+
+    <div class="carousel-item p-4">
+      <iframe src="https://www.beehiiv.com?via=D-Konsult" class="w-full h-48 rounded-lg"></iframe>
+      <a target="_blank"
+         href="https://www.beehiiv.com?via=D-Konsult"
+         class="block mt-3 text-center px-4 py-2 bg-blue-600 text-white rounded-lg">
+         📩 Build Newsletter Business
+      </a>
+    </div>
+
+    <div class="carousel-item p-4">
+      <iframe src="https://www.alibaba.com/x/AxMUVL?ck=activity" class="w-full h-48 rounded-lg"></iframe>
+      <a target="_blank"
+         href="https://www.alibaba.com/x/AxMUVL?ck=activity"
+         class="block mt-3 text-center px-4 py-2 bg-orange-600 text-white rounded-lg">
+         🛒 Alibaba Welcome Bonus
+      </a>
+    </div>
+
+    <div class="carousel-item p-4">
+      <iframe src="https://www.appcreator24.com/afi/783476" class="w-full h-48 rounded-lg"></iframe>
+      <a target="_blank"
+         href="https://www.appcreator24.com/afi/783476"
+         class="block mt-3 text-center px-4 py-2 bg-purple-600 text-white rounded-lg">
+         🖥️ Build Android Apps
+      </a>
+    </div>
+
+    <div class="carousel-item p-4">
+      <iframe src="https://www.livechat.com/?a=AAGO-M3Ig" class="w-full h-48 rounded-lg"></iframe>
+      <a target="_blank"
+         href="https://www.livechat.com/?a=AAGO-M3Ig"
+         class="block mt-3 text-center px-4 py-2 bg-red-600 text-white rounded-lg">
+         💬 LiveChat Support
+      </a>
+    </div>
+
+    <div class="carousel-item p-4">
+      <iframe src="https://www.helpdesk.com/?a=AAGO-M3Ig" class="w-full h-48 rounded-lg"></iframe>
+      <a target="_blank"
+         href="https://www.helpdesk.com/?a=AAGO-M3Ig"
+         class="block mt-3 text-center px-4 py-2 bg-gray-600 text-white rounded-lg">
+         🤖 Build Chatbots
+      </a>
+    </div>
+
+    <div class="carousel-item p-4">
+      <iframe src="https://www.take.app/?via=debeatzgh" class="w-full h-48 rounded-lg"></iframe>
+      <a target="_blank"
+         href="https://www.take.app/?via=debeatzgh"
+         class="block mt-3 text-center px-4 py-2 bg-teal-600 text-white rounded-lg">
+         🛍️ Take App Storefront
+      </a>
+    </div>
+
+    <div class="carousel-item p-4">
+      <iframe src="https://go.fiverr.com/visit/?bta=900993&brand=fiverraffiliates" class="w-full h-48 rounded-lg"></iframe>
+      <a target="_blank"
+         href="https://go.fiverr.com/visit/?bta=900993&brand=fiverraffiliates"
+         class="block mt-3 text-center px-4 py-2 bg-indigo-500 text-white rounded-lg">
+         💼 Earn on Fiverr
+      </a>
+    </div>
+
+    <div class="carousel-item p-4">
+      <iframe src="https://websites.co.in/refer/403501" class="w-full h-48 rounded-lg"></iframe>
+      <a target="_blank"
+         href="https://websites.co.in/refer/403501"
+         class="block mt-3 text-center px-4 py-2 bg-green-500 text-white rounded-lg">
+         🌍 Instant Websites
+      </a>
+    </div>
+
+    <div class="carousel-item p-4">
+      <iframe src="https://yazing.com/topdeals/topcoupons/debeatzgh" class="w-full h-48 rounded-lg"></iframe>
+      <a target="_blank"
+         href="https://yazing.com/topdeals/topcoupons/debeatzgh"
+         class="block mt-3 text-center px-4 py-2 bg-pink-500 text-white rounded-lg">
+         💸 AliExpress Coupons
+      </a>
+    </div>
+
+    <div class="carousel-item p-4">
+      <iframe src="https://elfsight.com/?ref=678133a5-fd2f-476f-b962-19934f5452bb" class="w-full h-48 rounded-lg"></iframe>
+      <a target="_blank"
+         href="https://elfsight.com/?ref=678133a5-fd2f-476f-b962-19934f5452bb"
+         class="block mt-3 text-center px-4 py-2 bg-blue-500 text-white rounded-lg">
+         ⚙️ Elfsight Widgets
+      </a>
+    </div>
+
+    <div class="carousel-item p-4">
+      <iframe src="https://yazing.com/topdeals/freeshipping/debeatzgh" class="w-full h-48 rounded-lg"></iframe>
+      <a target="_blank"
+         href="https://yazing.com/topdeals/freeshipping/debeatzgh"
+         class="block mt-3 text-center px-4 py-2 bg-yellow-500 text-white rounded-lg">
+         🚚 Free Shipping Deals
+      </a>
+    </div>
+
+    <div class="carousel-item p-4">
+      <iframe src="https://go.fiverr.com/visit/?bta=900993&brand=logomaker" class="w-full h-48 rounded-lg"></iframe>
+      <a target="_blank"
+         href="https://go.fiverr.com/visit/?bta=900993&brand=logomaker"
+         class="block mt-3 text-center px-4 py-2 bg-purple-500 text-white rounded-lg">
+         🎨 Logo Maker Tools
+      </a>
+    </div>
 
   </div>
 
-  <!-- Scroll Buttons -->
-  <button id="scroll-left" class="floating-btn fixed bottom-32 left-4 bg-indigo-600 text-white p-4 rounded-full shadow-lg">⬅️</button>
-  <button id="scroll-right" class="floating-btn fixed bottom-20 left-4 bg-indigo-600 text-white p-4 rounded-full shadow-lg">➡️</button>
+  <!-- Floating Button -->
+  <button id="open-carousel-btn">Open Affiliate Catalog</button>
 
-  <!-- Visit Catalog Button -->
-  <a id="linktree-btn" href="https://linktr.ee/debeatzgh" target="_blank"
-     class="fixed bottom-44 left-4 bg-green-600 text-white px-4 py-3 rounded-xl shadow-lg font-semibold">
-     🌍 Visit Catalog
-  </a>
-
-  <!-- NEW — Floating Button to open iframe modal -->
-  <button id="open-affiliate">📂 Open Affiliate Carousel</button>
-
-  <!-- Modal Viewer -->
-  <div id="affiliateModal">
-    <button id="closeModal">Close ✖</button>
-    <iframe id="affiliateFrame" src=""></iframe>
+  <!-- Popup Iframe -->
+  <div id="iframe-popup" class="flex">
+    <iframe srcdoc="<h2 style='text-align:center'>Loading...</h2>"></iframe>
   </div>
 
-  <!-- Script -->
   <script>
-    const carousel = document.getElementById('carousel');
-    document.getElementById('scroll-left').onclick = () => {
-      carousel.scrollBy({left: -350, behavior: 'smooth'});
-    };
-    document.getElementById('scroll-right').onclick = () => {
-      carousel.scrollBy({left: 350, behavior: 'smooth'});
+    const btn = document.getElementById("open-carousel-btn");
+    const popup = document.getElementById("iframe-popup");
+    const frame = popup.querySelector("iframe");
+
+    btn.onclick = () => {
+      popup.style.display = "flex";
+      frame.srcdoc = document.documentElement.innerHTML;
     };
 
-    /* Modal iframe open/close */
-    const modal = document.getElementById('affiliateModal');
-    const frame = document.getElementById('affiliateFrame');
-
-    document.getElementById('open-affiliate').onclick = () => {
-      frame.src = window.location.href;   // loads the page INSIDE modal
-      modal.style.display = "flex";
-    };
-
-    document.getElementById('closeModal').onclick = () => {
-      modal.style.display = "none";
-      frame.src = "";
-    };
+    popup.onclick = () => popup.style.display = "none";
   </script>
 
 </body>
