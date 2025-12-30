@@ -1,3 +1,117 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Creator Tech Hub</title>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+iframe{width:100%;height:100%;border:none}
+.badge{font-size:11px;padding:2px 8px;border-radius:999px}
+</style>
+</head>
+
+<body class="bg-slate-100">
+
+<!-- HEADER -->
+<header class="bg-gradient-to-r from-indigo-600 to-blue-600 text-white p-6 text-center">
+  <h1 class="text-3xl font-bold">Social Creator Tech Hub</h1>
+  <p class="text-sm mt-2 opacity-90">Discover tools, products & deals creators love</p>
+</header>
+
+<!-- CATEGORY TABS -->
+<div class="flex flex-wrap justify-center gap-3 bg-white p-4 shadow">
+  <button onclick="openTab('tech')" class="px-4 py-2 bg-indigo-600 text-white rounded-xl">Creator Tech</button>
+  <button onclick="openTab('ai')" class="px-4 py-2 bg-indigo-100 rounded-xl">AI Tools</button>
+  <button onclick="openTab('digital')" class="px-4 py-2 bg-indigo-100 rounded-xl">Digital Products</button>
+  <button onclick="openTab('deals')" class="px-4 py-2 bg-indigo-100 rounded-xl">Hot Deals</button>
+  <button onclick="openTab('shop')" class="px-4 py-2 bg-indigo-100 rounded-xl">Affiliate Shop</button>
+</div>
+
+<!-- PRODUCT GRID -->
+<section class="p-6 grid md:grid-cols-3 gap-6">
+
+  <!-- PRODUCT CARD -->
+  <div class="bg-white rounded-2xl shadow p-5">
+    <h3 class="font-bold text-lg">Creator Tech Store</h3>
+    <p class="text-sm text-gray-600 mt-1">Trending creator gadgets & tools</p>
+    <div class="flex gap-2 mt-2">
+      <span class="badge bg-green-100 text-green-700">Trending</span>
+      <span class="badge bg-blue-100 text-blue-700">Tech</span>
+    </div>
+    <button onclick="loadFrame('https://www.socialcreator.com/techshop/?s=314037')" class="mt-4 w-full bg-indigo-600 text-white py-2 rounded-xl">Browse</button>
+  </div>
+
+  <div class="bg-white rounded-2xl shadow p-5">
+    <h3 class="font-bold text-lg">AI Creator Tools</h3>
+    <p class="text-sm text-gray-600 mt-1">Boost productivity & automation</p>
+    <div class="flex gap-2 mt-2">
+      <span class="badge bg-purple-100 text-purple-700">AI</span>
+      <span class="badge bg-red-100 text-red-700">Hot</span>
+    </div>
+    <button onclick="loadFrame('https://www.socialcreator.com/techshop/?s=314038')" class="mt-4 w-full bg-indigo-600 text-white py-2 rounded-xl">Explore</button>
+  </div>
+
+  <div class="bg-white rounded-2xl shadow p-5">
+    <h3 class="font-bold text-lg">Digital Products Hub</h3>
+    <p class="text-sm text-gray-600 mt-1">Courses, templates & downloads</p>
+    <div class="flex gap-2 mt-2">
+      <span class="badge bg-yellow-100 text-yellow-700">New</span>
+      <span class="badge bg-slate-200 text-slate-700">Digital</span>
+    </div>
+    <button onclick="loadFrame('https://www.socialcreator.com/techshop/?s=314036')" class="mt-4 w-full bg-indigo-600 text-white py-2 rounded-xl">Open</button>
+  </div>
+
+</section>
+
+<!-- IFRAME VIEWER -->
+<div class="fixed inset-0 bg-black/80 hidden" id="viewer">
+  <div class="absolute top-3 right-3 flex gap-2">
+    <button onclick="closeViewer()" class="bg-white px-3 py-1 rounded-lg">✕ Close</button>
+  </div>
+  <iframe id="frame"></iframe>
+</div>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="fixed bottom-0 inset-x-0 bg-white border-t flex justify-around p-2 md:hidden">
+  <button onclick="openTab('tech')">Tech</button>
+  <button onclick="openTab('ai')">AI</button>
+  <button onclick="openTab('digital')">Digital</button>
+  <button onclick="openTab('shop')">Shop</button>
+</nav>
+
+<script>
+const viewer=document.getElementById("viewer");
+const frame=document.getElementById("frame");
+
+function loadFrame(url){
+  frame.src=url;
+  viewer.classList.remove("hidden");
+}
+
+function closeViewer(){
+  viewer.classList.add("hidden");
+  frame.src="";
+}
+
+function openTab(tab){
+  const map={
+    tech:"https://www.socialcreator.com/techshop/?s=314037",
+    ai:"https://www.socialcreator.com/techshop/?s=314038",
+    digital:"https://www.socialcreator.com/techshop/?s=314036",
+    deals:"https://www.socialcreator.com/techshop/?s=314326",
+    shop:"https://debeatzgh1.github.io/-My-Brand-Online-Digital-Products-Affiliate-Shop/"
+  };
+  loadFrame(map[tab]);
+}
+</script>
+
+</body>
+</html>
+
+
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
