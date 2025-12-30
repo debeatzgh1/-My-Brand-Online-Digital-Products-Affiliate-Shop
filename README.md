@@ -147,7 +147,7 @@ render();
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Affiliate Shop Catalog</title>
+<title>Shop Catalog</title>
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
@@ -191,7 +191,7 @@ render();
 <div class="text-center py-6">
   <img src="https://debeatzgh.wordpress.com/wp-content/uploads/2025/08/designadigitalproductse-commerceonlinedeals3545265155247625100.jpg"
        class="mx-auto w-28 h-28 rounded-full shadow-lg"/>
-  <h1 class="text-2xl font-bold text-gray-800 mt-3">Affiliate Shop Catalog</h1>
+  <h1 class="text-2xl font-bold text-gray-800 mt-3"> Shop Catalog</h1>
   <p class="text-gray-500 text-sm">
     Premium tools, deals & digital products for creators
   </p>
