@@ -1,4 +1,239 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        :root {
+            --glass-bg: rgba(13, 17, 23, 0.98);
+            --glass-border: rgba(88, 166, 255, 0.4);
+            --accent-glow: #58a6ff;
+        }
+
+        /* 1. TOP-CENTER OVERLAY */
+        #promo-banner {
+            position: fixed;
+            top: 20px; /* Positioned at top */
+            left: 50%;
+            transform: translate(-50%, -150%); /* Hidden above screen */
+            opacity: 0;
+            visibility: hidden;
+            
+            width: 90%;
+            max-width: 360px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            z-index: 10000;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            cursor: pointer;
+        }
+
+        #promo-banner.active {
+            transform: translate(-50%, 0); /* Slides down into view */
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 2. SLIDE CONTENT WITH THUMBNAILS */
+        .slide-container {
+            position: relative;
+            height: 70px;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            display: flex; /* Flex for Image + Text */
+            align-items: center;
+            gap: 15px;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.5s ease;
+        }
+
+        .slide.current {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .thumb {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 1px solid var(--glass-border);
+        }
+
+        .text-content {
+            text-align: left;
+            flex: 1;
+        }
+
+        #promo-banner p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+
+        .highlight { color: var(--accent-glow); font-weight: 700; }
+
+        .badge {
+            background: var(--accent-glow);
+            color: #000;
+            font-size: 0.6rem;
+            padding: 1px 8px;
+            border-radius: 4px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            display: inline-block;
+        }
+
+        /* 3. TOP-RIGHT FLOATING LAUNCHER */
+        #floating-trigger {
+            position: fixed;
+            right: 20px;
+            top: 20px; /* Positioned at top */
+            width: 50px;
+            height: 50px;
+            background: var(--accent-glow);
+            border-radius: 15px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: #0d1117;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(88, 166, 255, 0.4);
+            z-index: 9997;
+            animation: pulse-top 2s infinite;
+        }
+
+        @keyframes pulse-top {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* 4. UTILS */
+        .close-btn {
+            position: absolute;
+            bottom: -35px; /* Moved close button below for top-banner UX */
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 4px 15px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+        }
+
+        #progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--accent-glow);
+            width: 0%;
+            transition: width 3s linear;
+            border-radius: 20px 20px 0 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="promo-banner">
+        <div id="progress-bar"></div>
+        
+        <div class="slide-container">
+            <div class="slide current" data-link="https://debeatzgh1.github.io/Home-/">
+                <img src="https://picsum.photos/100?random=1" class="thumb" alt="icon">
+                <div class="text-content">
+                    <span class="badge">Ecosystem</span>
+                    <p>Your sleek <span class="highlight">lifestyle hub</span> is ready.</p>
+                </div>
+            </div>
+            <div class="slide" data-link="https://t.me/Miningstoncoin99_bot">
+                <img src="https://picsum.photos/100?random=2" class="thumb" alt="icon">
+                <div class="text-content">
+                    <span class="badge">Mining</span>
+                    <p>Verified <span class="highlight">Crypto Bots</span> active now.</p>
+                </div>
+            </div>
+            <div class="slide" data-link="https://mybrandsonline.blogspot.com/">
+                <img src="https://picsum.photos/100?random=3" class="thumb" alt="icon">
+                <div class="text-content">
+                    <span class="badge">Insights</span>
+                    <p>Latest <span class="highlight">Brand News</span> and updates.</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="close-btn" onclick="closeBanner(event)">Dismiss</button>
+    </div>
+
+    <div id="floating-trigger" onclick="showBannerSequence()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+    </div>
+
+    <script>
+        const banner = document.getElementById('promo-banner');
+        const fab = document.getElementById('floating-trigger');
+        const slides = document.querySelectorAll('.slide');
+        const progress = document.getElementById('progress-bar');
+        
+        let currentSlide = 0;
+        let slideInterval;
+
+        banner.onclick = () => {
+            window.open(slides[currentSlide].getAttribute('data-link'), '_blank');
+        };
+
+        function resetProgress() {
+            progress.style.transition = 'none';
+            progress.style.width = '0%';
+            setTimeout(() => {
+                progress.style.transition = 'width 3s linear';
+                progress.style.width = '100%';
+            }, 50);
+        }
+
+        function startAutoSlide() {
+            resetProgress();
+            slideInterval = setInterval(() => {
+                slides[currentSlide].classList.remove('current');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('current');
+                resetProgress();
+            }, 3000);
+        }
+
+        function showBannerSequence() {
+            fab.style.display = 'none';
+            banner.classList.add('active');
+            startAutoSlide();
+        }
+
+        function closeBanner(event) {
+            event.stopPropagation(); 
+            banner.classList.remove('active');
+            fab.style.display = 'flex';
+            clearInterval(slideInterval);
+        }
+
+        window.onload = () => setTimeout(showBannerSequence, 1000);
+    </script>
+</body>
+</html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
