@@ -208,7 +208,7 @@
             }
             
             // window.open(url, '_blank') opens in a new tab.
-            window.open("https://debeatzgh1.github.io/-My-Brand-Online-Digital-Products-Affiliate-Shop/", "_blank");
+            window.open("https://debeatzgh1.github.io/blogs/", "_blank");
         }
     </script>
 
